@@ -330,6 +330,8 @@ pub trait SudoActions {
         index: U64,
         account_id_in_appchain: String,
     );
+    //
+    fn mint_wrapped_appchain_token(&mut self, receiver_id: AccountId, amount: U128);
 }
 
 pub trait ValidatorActions {
