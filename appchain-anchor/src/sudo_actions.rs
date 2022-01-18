@@ -248,4 +248,16 @@ impl SudoActions for AppchainAnchor {
             }
         }
     }
+    //
+    fn mint_wrapped_appchain_token(&mut self, receiver_id: AccountId, amount: U128) {
+        self.assert_owner();
+        let wrapped_appchain_token = self.wrapped_appchain_token.get().unwrap();
+        ext_fungible_token::mint(
+            receiver_id.clone(),
+            amount,
+            &wrapped_appchain_token.contract_account,
+            STORAGE_DEPOSIT_FOR_NEP141_TOEKN,
+            GAS_FOR_MINT_FUNGIBLE_TOKEN,
+        );
+    }
 }
